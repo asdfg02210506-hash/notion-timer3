@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>Notion 正計時器</title>
+<style>
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: transparent;
+}
+.timer {
+  display: flex;
+  gap: 8px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.unit {
+  background: #111;
+  color: #d9b3ff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 28px;
+  box-shadow: 0 0 8px #7a55ff66;
+  text-align: center;
+}
+.unit small {
+  display: block;
+  font-size: 12px;
+  opacity: 0.6;
+}
+</style>
+</head>
+<body>
+<div class="timer">
+  <div class="unit"><span id="y">00</span><small>年</small></div>
+  <div class="unit"><span id="d">000</span><small>天</small></div>
+  <div class="unit"><span id="h">00</span><small>時</small></div>
+  <div class="unit"><span id="m">00</span><small>分</small></div>
+  <div class="unit"><span id="s">00</span><small>秒</small></div>
+</div>
+<script>
+const start = new Date("2025-07-02T00:00:00");
+function updateTimer() {
+  const now = new Date();
+  let diff = Math.floor((now - start) / 1000);
+  const years = Math.floor(diff / (365 * 24 * 3600));
+  diff %= (365 * 24 * 3600);
+  const days = Math.floor(diff / (24 * 3600));
+  diff %= (24 * 3600);
+  const hours = Math.floor(diff / 3600);
+  diff %= 3600;
+  const mins = Math.floor(diff / 60);
+  const secs = diff % 60;
+
+  document.getElementById("y").textContent = String(years).padStart(2, "0");
+  document.getElementById("d").textContent = String(days).padStart(3, "0");
+  document.getElementById("h").textContent = String(hours).padStart(2, "0");
+  document.getElementById("m").textContent = String(mins).padStart(2, "0");
+  document.getElementById("s").textContent = String(secs).padStart(2, "0");
+}
+setInterval(updateTimer, 1000);
+updateTimer();
+</script>
+</body>
+</html>
