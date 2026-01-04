@@ -3,47 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>可跑正計時器</title>
+<title>正計時器</title>
 <style>
+  :root {
+    --main-color: #000000; /* 黑字 */
+    --bg-glass: rgba(255,255,255,0.1);
+  }
+
   body {
-    background: transparent;
+    background: transparent; /* 可融入 Notion 背景 */
     font-family: 'Noto Sans TC', 'Inter', sans-serif;
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     margin: 0;
     padding: 0;
-    color: #000000; /* 黑字預設 */
+    color: var(--main-color);
     font-size: 16px;
-    line-height: 1.3;
   }
 
   #title {
     font-weight: 600;
-    margin-right: 8px;
-    text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.1);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  #timer-box {
+    padding: 10px 16px;
+    border-radius: 12px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(6px);
   }
 
   #timer {
     font-family: 'Courier New', monospace;
     font-weight: 500;
+    font-size: 20px;
     letter-spacing: 0.5px;
-    text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05);
   }
 
+  /* 自動適應 Notion 暗黑模式 */
   @media (prefers-color-scheme: dark) {
-    body {
-      color: #ffffff;
-    }
-    #title, #timer {
-      text-shadow: 0.5px 0.5px 1px rgba(255,255,255,0.1);
+    :root {
+      --main-color: #ffffff; /* 白字 */
+      --bg-glass: rgba(0,0,0,0.2);
     }
   }
 </style>
 </head>
 <body>
   <div id="title">在一起已過：</div>
-  <div id="timer">00天 00時 00分 00秒</div>
+  <div id="timer-box">
+    <div id="timer">00天 00時 00分 00秒</div>
+  </div>
 
   <script>
     const startDate = new Date('2025-07-02T00:00:00');
