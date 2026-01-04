@@ -3,54 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>藝術感計時器</title>
+<title>小貼紙計時器</title>
 <style>
   body {
-    background: transparent; /* 融入 Notion 背景 */
+    background: transparent;
     font-family: 'Noto Sans TC', 'Inter', sans-serif;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* 靠左對齊，更像 Notion */
-    justify-content: center;
+    flex-direction: row;  /* 左右排列 */
+    align-items: baseline; /* 與文字對齊 */
     margin: 0;
     padding: 0;
     color: #000000; /* 黑字預設 */
+    font-size: 14px; /* 小巧字體 */
+    line-height: 1.2;
   }
 
-  h2 {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0 0 6px 0;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+  #title {
+    font-weight: 600;
+    margin-right: 6px;
+    text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.1);
   }
 
   #timer {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    line-height: 1.3;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    font-family: 'Courier New', monospace; /* 藝術感字型 */
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05);
   }
 
-  /* 自適應黑夜模式 (Notion 黑底) */
   @media (prefers-color-scheme: dark) {
     body {
       color: #ffffff;
     }
-    h2, #timer {
-      text-shadow: 1px 1px 2px rgba(255,255,255,0.15);
+    #title, #timer {
+      text-shadow: 0.5px 0.5px 1px rgba(255,255,255,0.1);
     }
   }
 </style>
 </head>
 <body>
-  <h2>在一起已過：</h2>
+  <div id="title">在一起已過：</div>
   <div id="timer">00天 00時 00分 00秒</div>
 
   <script>
-    const startDate = new Date('2025-07-02T00:00:00'); // 正計時起點
+    const startDate = new Date('2025-07-02T00:00:00');
     const timer = document.getElementById('timer');
 
     function updateTimer() {
