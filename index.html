@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<title>Notion 正計時器</title>
+<title>在一起已正計時器</title>
 <style>
 body {
   margin: 0;
@@ -10,28 +10,44 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: transparent;
+  background: transparent; /* 貼合 Notion */
   font-family: 'Segoe UI', sans-serif;
 }
 
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#title {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: #000000; /* 黑字 */
+}
+
 #timer {
-  color: #ffffff; /* 白字 */
   font-size: 28px;
   font-weight: 600;
-  text-shadow: 0 0 4px rgba(0,0,0,0.5);
+  color: #000000; /* 黑字 */
+  text-shadow: 0 0 2px rgba(0,0,0,0.2);
 }
 
 @media (prefers-color-scheme: dark) {
-  #timer {
-    color: #ffffff;
-    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+  #title, #timer {
+    color: #ffffff; /* 暗黑模式白字 */
+    text-shadow: 0 0 3px rgba(0,0,0,0.5);
   }
 }
 </style>
 </head>
 <body>
 
-<div id="timer">00年 000天 00時 00分 00秒</div>
+<div id="container">
+  <div id="title">在一起已：</div>
+  <div id="timer">00年 000天 00時 00分 00秒</div>
+</div>
 
 <script>
 const start = new Date("2025-07-02T00:00:00");
@@ -56,9 +72,11 @@ function updateTimer() {
     `${years}年 ${days.toString().padStart(3,'0')}天 ${hours.toString().padStart(2,'0')}時 ${mins.toString().padStart(2,'0')}分 ${secs.toString().padStart(2,'0')}秒`;
 }
 
+// 每秒更新一次
 setInterval(updateTimer, 1000);
 updateTimer();
 </script>
 
 </body>
 </html>
+
