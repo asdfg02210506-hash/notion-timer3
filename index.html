@@ -3,15 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>柔光正計時器</title>
+<title>正計時器</title>
 <style>
-  :root {
-    --main-color: #b589d6;
-    --glow-color: rgba(159,115,248,0.7);
-  }
-
   body {
-    background: transparent;
+    background: transparent; /* 透明背景，融入 Notion */
     font-family: 'Noto Sans TC', 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
@@ -19,68 +14,28 @@
     justify-content: center;
     height: 100vh;
     margin: 0;
-    color: var(--main-color);
+    color: #000000; /* 黑字 */
   }
 
   h2 {
-    color: var(--main-color);
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 12px;
-    letter-spacing: 1px;
-  }
-
-  .subtitle {
-    color: rgba(160, 120, 200, 0.8);
-    font-size: 15px;
-    margin-bottom: 24px;
-    font-style: italic;
-  }
-
-  .timer-box {
-    padding: 25px 40px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 25px rgba(192, 132, 252, 0.25);
-    backdrop-filter: blur(10px);
+    font-size: 20px;
   }
 
   #timer {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 600;
-    color: #c7b3ff;
-    text-shadow: 0 0 10px var(--glow-color);
-    letter-spacing: 2px;
-    animation: soft-glow 2.5s ease-in-out infinite;
-  }
-
-  @keyframes soft-glow {
-    0%, 100% { text-shadow: 0 0 10px var(--glow-color); }
-    50% { text-shadow: 0 0 20px rgba(159,115,248,0.9); }
-  }
-
-  /* 夜色主題微調 */
-  @media (prefers-color-scheme: dark) {
-    body {
-      --main-color: #c5a9ff;
-      --glow-color: rgba(188,140,255,0.9);
-    }
-    .timer-box {
-      background: rgba(30, 0, 60, 0.4);
-      box-shadow: 0 0 25px rgba(140, 90, 255, 0.3);
-    }
+    letter-spacing: 1px;
   }
 </style>
 </head>
 <body>
-  <h2>自 2023 年 7 月 2 日起</h2>
-  <div class="subtitle">“時間總是靜靜地流動，夢也隨之成長。”</div>
-
-  <div class="timer-box">
-    <div id="timer">00天 00時 00分 00秒</div>
-  </div>
+  <h2>在一起已過：</h2>
+  <div id="timer">00天 00時 00分 00秒</div>
 
   <script>
-    const startDate = new Date('2023-07-02T00:00:00');
+    const startDate = new Date('2025-07-02T00:00:00');
     const timer = document.getElementById('timer');
 
     function updateTimer() {
