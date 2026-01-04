@@ -5,58 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>正計時器</title>
 <style>
-  :root {
-    --main-color: #000000; /* 黑字 */
-    --bg-glass: rgba(255,255,255,0.1);
-  }
-
   body {
-    background: transparent; /* 可融入 Notion 背景 */
+    background: transparent; /* 透明背景，融入 Notion */
     font-family: 'Noto Sans TC', 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    color: var(--main-color);
-    font-size: 16px;
+    color: #000000; /* 黑字 */
   }
 
-  #title {
+  h2 {
     font-weight: 600;
-    margin-bottom: 6px;
-    letter-spacing: 1px;
-  }
-
-  #timer-box {
-    padding: 10px 16px;
-    border-radius: 12px;
-    background: var(--bg-glass);
-    backdrop-filter: blur(6px);
+    margin-bottom: 12px;
+    font-size: 20px;
   }
 
   #timer {
-    font-family: 'Courier New', monospace;
-    font-weight: 500;
-    font-size: 20px;
-    letter-spacing: 0.5px;
-  }
-
-  /* 自動適應 Notion 暗黑模式 */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --main-color: #ffffff; /* 白字 */
-      --bg-glass: rgba(0,0,0,0.2);
-    }
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
 </style>
 </head>
 <body>
-  <div id="title">在一起已過：</div>
-  <div id="timer-box">
-    <div id="timer">00天 00時 00分 00秒</div>
-  </div>
+  <h2>在一起已過：</h2>
+  <div id="timer">00天 00時 00分 00秒</div>
 
   <script>
     const startDate = new Date('2025-07-02T00:00:00');
@@ -71,7 +47,8 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      timer.textContent = ${days}天 ${hours.toString().padStart(2,'0')}時 ${minutes.toString().padStart(2,'0')}分 ${seconds.toString().padStart(2,'0')}秒;
+      timer.innerHTML =
+        ${days}天 ${hours.toString().padStart(2, '0')}時 ${minutes.toString().padStart(2, '0')}分 ${seconds.toString().padStart(2, '0')}秒;
     }
 
     setInterval(updateTimer, 1000);
