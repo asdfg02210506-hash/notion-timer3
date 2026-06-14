@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <style>
 html,body{
@@ -10,41 +10,38 @@ html,body{
     padding:0;
     background:transparent;
     overflow:hidden;
+    font-family:"Noto Sans TC",sans-serif;
 }
 
-.container{
+.wrapper{
     text-align:center;
-    color:white;
-    font-family:"Noto Sans TC",sans-serif;
+    color:black;
 }
 
 .title{
     font-size:16px;
-    margin-bottom:8px;
-    opacity:.8;
+    opacity:0.7;
+    margin-bottom:6px;
 }
 
 .timer{
     font-size:32px;
     font-weight:700;
-    text-shadow:
-        0 0 10px rgba(180,120,255,.6),
-        0 0 20px rgba(180,120,255,.4);
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper">
     <div class="title">自 2025/07/02 起</div>
-    <div class="timer" id="timer"></div>
+    <div class="timer" id="timer">--</div>
 </div>
 
 <script>
 const startDate = new Date("2025-07-02T00:00:00");
 
-function updateTimer(){
+function update(){
     const now = new Date();
     const diff = now - startDate;
 
@@ -57,8 +54,8 @@ function updateTimer(){
         ${days}天 ${hours}時 ${minutes}分 ${seconds}秒;
 }
 
-updateTimer();
-setInterval(updateTimer,1000);
+update();
+setInterval(update,1000);
 </script>
 
 </body>
