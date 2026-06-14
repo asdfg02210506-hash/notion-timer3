@@ -9,13 +9,13 @@ html,body{
     margin:0;
     padding:0;
     background:transparent;
-    overflow:hidden;
     font-family:"Noto Sans TC",sans-serif;
 }
 
-.wrapper{
+.box{
     text-align:center;
     color:black;
+    padding:10px;
 }
 
 .title{
@@ -26,32 +26,32 @@ html,body{
 
 .timer{
     font-size:32px;
-    font-weight:700;
+    font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="box">
     <div class="title">自 2025/07/02 起</div>
-    <div class="timer" id="timer">--</div>
+    <div class="timer" id="timer">載入中...</div>
 </div>
 
 <script>
-const startDate = new Date("2025-07-02T00:00:00");
+const start = new Date("2025-07-02T00:00:00");
 
 function update(){
     const now = new Date();
-    const diff = now - startDate;
+    const diff = now - start;
 
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor(diff / 3600000 % 24);
-    const minutes = Math.floor(diff / 60000 % 60);
-    const seconds = Math.floor(diff / 1000 % 60);
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff / 3600000 % 24);
+    const m = Math.floor(diff / 60000 % 60);
+    const s = Math.floor(diff / 1000 % 60);
 
-    document.getElementById("timer").innerHTML =
-        ${days}天 ${hours}時 ${minutes}分 ${seconds}秒;
+    document.getElementById("timer").innerText =
+        ${d}天 ${h}時 ${m}分 ${s}秒;
 }
 
 update();
