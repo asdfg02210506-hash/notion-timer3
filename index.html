@@ -1,82 +1,65 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>在一起已正計時器</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: transparent; /* 貼合 Notion */
-  font-family: 'Segoe UI', sans-serif;
+html,body{
+    margin:0;
+    padding:0;
+    background:transparent;
+    overflow:hidden;
 }
 
-#container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.container{
+    text-align:center;
+    color:white;
+    font-family:"Noto Sans TC",sans-serif;
 }
 
-#title {
-  font-weight: 600;
-  font-size: 18px;
-  margin-bottom: 6px;
-  color: #000000; /* 黑字 */
+.title{
+    font-size:16px;
+    margin-bottom:8px;
+    opacity:.8;
 }
 
-#timer {
-  font-size: 28px;
-  font-weight: 600;
-  color: #000000; /* 黑字 */
-  text-shadow: 0 0 2px rgba(0,0,0,0.2);
-}
-
-@media (prefers-color-scheme: dark) {
-  #title, #timer {
-    color: #ffffff; /* 暗黑模式白字 */
-    text-shadow: 0 0 3px rgba(0,0,0,0.5);
-  }
+.timer{
+    font-size:32px;
+    font-weight:700;
+    text-shadow:
+        0 0 10px rgba(180,120,255,.6),
+        0 0 20px rgba(180,120,255,.4);
 }
 </style>
 </head>
+
 <body>
 
-<div id="container">
-  <div id="title">在一起已：</div>
-  <div id="timer">00年 000天 00時 00分 00秒</div>
+<div class="container">
+    <div class="title">自 2025/07/02 起</div>
+    <div class="timer" id="timer"></div>
 </div>
 
 <script>
-const start = new Date("2025-07-02T00:00:00");
+const startDate = new Date("2025-07-02T00:00:00");
 
-function updateTimer() {
-  const now = new Date();
-  let diff = Math.floor((now - start) / 1000);
+function updateTimer(){
+    const now = new Date();
+    const diff = now - startDate;
 
-  const years = Math.floor(diff / (365 * 24 * 3600));
-  diff %= (365 * 24 * 3600);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor(diff / 3600000 % 24);
+    const minutes = Math.floor(diff / 60000 % 60);
+    const seconds = Math.floor(diff / 1000 % 60);
 
-  const days = Math.floor(diff / (24 * 3600));
-  diff %= (24 * 3600);
-
-  const hours = Math.floor(diff / 3600);
-  diff %= 3600;
-
-  const mins = Math.floor(diff / 60);
-  const secs = diff % 60;
-
-  document.getElementById("timer").textContent =
-    `${years}年 ${days.toString().padStart(3,'0')}天 ${hours.toString().padStart(2,'0')}時 ${mins.toString().padStart(2,'0')}分 ${secs.toString().padStart(2,'0')}秒`;
+    document.getElementById("timer").innerHTML =
+        ${days}天 ${hours}時 ${minutes}分 ${seconds}秒;
 }
 
-// 每秒更新一次
-setInterval(updateTimer, 1000);
 updateTimer();
+setInterval(updateTimer,1000);
 </script>
 
 </body>
 </html>
-
