@@ -15,7 +15,6 @@ html,body{
 .box{
     text-align:center;
     color:black;
-    padding:10px;
 }
 
 .title{
@@ -39,10 +38,11 @@ html,body{
 </div>
 
 <script>
-const start = new Date("2025-07-02T00:00:00");
+// ✔ 用「時間戳」避免所有 Date bug
+const start = new Date(2025, 6, 2).getTime();
 
 function update(){
-    const now = new Date();
+    const now = Date.now();
     const diff = now - start;
 
     const d = Math.floor(diff / 86400000);
